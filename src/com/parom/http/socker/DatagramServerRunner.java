@@ -3,7 +3,6 @@ package com.parom.http.socker;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
 public class DatagramServerRunner {
 
@@ -13,7 +12,7 @@ public class DatagramServerRunner {
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
             datagramSocket.receive(packet);
 
-            System.out.println(new String(packet.getData()));
+            System.out.println(packet.getData().toString());
         }
     }
 }
