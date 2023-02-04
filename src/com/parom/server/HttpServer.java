@@ -56,7 +56,6 @@ public class HttpServer {
             dataOutputStream.write(resourcesBody);
 
         } catch (IOException e) {
-            // TODO: 2/4/23 log error message
             e.printStackTrace();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
