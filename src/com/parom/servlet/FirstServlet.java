@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.Enumeration;
 
 @WebServlet("/first")
 public class FirstServlet extends HttpServlet  {
@@ -25,7 +27,15 @@ public class FirstServlet extends HttpServlet  {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+        req.getHeader("user-agent");
+        Enumeration<String> headerNames = req.getHeaderNames();
+        while (headerNames.hasMoreElements()){
+            String nextElement = headerNames.nextElement();
+            System.out.println(req.getHeader(nextElement));
+        }
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setHeader("token", "12345");
+//        resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
         try(PrintWriter writer = resp.getWriter()){
             writer.write("<h1>Hello from First Servlet</h1>");
         }
