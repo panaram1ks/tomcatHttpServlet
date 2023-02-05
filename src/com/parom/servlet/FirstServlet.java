@@ -7,11 +7,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Enumeration;
 import java.util.Map;
+import java.util.stream.Stream;
 
 @WebServlet("/first")
 public class FirstServlet extends HttpServlet  {
@@ -21,19 +21,8 @@ public class FirstServlet extends HttpServlet  {
         super.init(config);
     }
 
-//    @Override
-//    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.service(req, resp);
-//    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getHeader("user-agent");
-//        Enumeration<String> headerNames = req.getHeaderNames();
-//        while (headerNames.hasMoreElements()){
-//            String nextElement = headerNames.nextElement();
-//            System.out.println(req.getHeader(nextElement));
-//        }
         String paramValue = req.getParameter("param");
 
         Map<String, String[]> parameterMap = req.getParameterMap();
@@ -41,7 +30,6 @@ public class FirstServlet extends HttpServlet  {
 
         resp.setContentType("text/html; charset=UTF-8");
         resp.setHeader("token", "12345");
-//        resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
         try(PrintWriter writer = resp.getWriter()){
             writer.write("<h1>Hello from First Servlet</h1>");
         }
@@ -49,9 +37,10 @@ public class FirstServlet extends HttpServlet  {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, String[]> parameterMap = req.getParameterMap();
-        System.out.println(parameterMap);
-
+       try( BufferedReader reader = req.getReader();
+            Stream<String> lines = reader.lines()){
+            lines.forEach(System.out::println);
+       }
     }
 
     @Override
