@@ -22,20 +22,21 @@ public class FlightServlet extends HttpServlet {
         resp.setContentType("text/html");
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 
-        try (PrintWriter writer = resp.getWriter()) {
-            writer.write("<h1>Список перелетов</h1>");
-            writer.write("<ul>");
-            flightService.findAll().forEach(flightDTO -> {
-                writer.write(
-                        """
-                                <li>
-                                    <a href="/tickets?flightId=%d">%s</a>
-                                </li>
-                                """.formatted(flightDTO.getId(), flightDTO.getDescription())
-                );
-            });
-            writer.write("</ul>");
+//        try () {
+        PrintWriter writer = resp.getWriter();
+        writer.write("<h1>Список перелетов</h1>");
+        writer.write("<ul>");
+        flightService.findAll().forEach(flightDTO -> {
+            writer.write(
+                    """
+                            <li>
+                                <a href="/tickets?flightId=%d">%s</a>
+                            </li>
+                            """.formatted(flightDTO.getId(), flightDTO.getDescription())
+            );
+        });
+        writer.write("</ul>");
 
-        }
+//        }
     }
 }
