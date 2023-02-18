@@ -6,7 +6,7 @@ import lombok.*;
 //@Getter
 //@ToString
 //@EqualsAndHashCode
-@Value
+@Data
 @Builder
 public class FlightDTO {
 
