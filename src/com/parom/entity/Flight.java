@@ -1,26 +1,28 @@
 package com.parom.entity;
 
-import java.time.LocalDateTime;
+
+import java.sql.Date;
 import java.util.Objects;
 
 public class Flight {
 
     private Long id;
     private String flightNo;
-    private LocalDateTime departureDate;
+    private Date departureDate;
     private String departureAirportCode;
-    private LocalDateTime arrivalDate;
+    private Date arrivalDate;
     private String arrivalAirportCode;
     private Long aircraftId;
     private FlightStatuse statuse;
 
-    public Flight(Long id, String flightNo, LocalDateTime departureDate, String departureAirportCode, LocalDateTime arrivalDate, String arrivalAirportCode, Long aircraftId, FlightStatuse statuse) {
+    public Flight(Long id, String flightNo, Date departureDate, String departureAirportCode, /*Date arrivalDate, String arrivalAirportCode,*/
+                  Long aircraftId, FlightStatuse statuse) {
         this.id = id;
         this.flightNo = flightNo;
         this.departureDate = departureDate;
         this.departureAirportCode = departureAirportCode;
-        this.arrivalDate = arrivalDate;
-        this.arrivalAirportCode = arrivalAirportCode;
+//        this.arrivalDate = arrivalDate;
+//        this.arrivalAirportCode = arrivalAirportCode;
         this.aircraftId = aircraftId;
         this.statuse = statuse;
     }
@@ -41,28 +43,12 @@ public class Flight {
         this.flightNo = flightNo;
     }
 
-    public LocalDateTime getDepartureDate() {
-        return departureDate;
-    }
-
-    public void setDepartureDate(LocalDateTime departureDate) {
-        this.departureDate = departureDate;
-    }
-
     public String getDepartureAirportCode() {
         return departureAirportCode;
     }
 
     public void setDepartureAirportCode(String departureAirportCode) {
         this.departureAirportCode = departureAirportCode;
-    }
-
-    public LocalDateTime getArrivalDate() {
-        return arrivalDate;
-    }
-
-    public void setArrivalDate(LocalDateTime arrivalDate) {
-        this.arrivalDate = arrivalDate;
     }
 
     public String getArrivalAirportCode() {
@@ -87,6 +73,22 @@ public class Flight {
 
     public void setStatuse(FlightStatuse statuse) {
         this.statuse = statuse;
+    }
+
+    public Date getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public Date getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class FlightDao implements Dao<Long, Flight> {
                 flights.add(buildFlight(resultSet));
             }
             return flights;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException();
         }
     }
@@ -64,10 +64,10 @@ public class FlightDao implements Dao<Long, Flight> {
         return new Flight(
           resultSet.getObject("id", Long.class),
           resultSet.getObject("flight_no", String.class),
-          resultSet.getObject("departure_date", Timestamp.class).toLocalDateTime(),
+          resultSet.getObject("departure_date", Date.class),
           resultSet.getObject("departure_airport_code", String.class),
-          resultSet.getObject("arrival_date", Timestamp.class).toLocalDateTime(),
-          resultSet.getObject("arrival_airport_code", String.class),
+//          resultSet.getObject("arrival_date", Date.class),
+//          resultSet.getObject("arrival_airport_code", String.class),
           resultSet.getObject("aircraft_id", Long.class),
           FlightStatuse.valueOf(resultSet.getObject("status", String.class))
           );
