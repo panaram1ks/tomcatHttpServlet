@@ -25,8 +25,8 @@ public class TicketServlet extends HttpServlet {
 
         Long flightId = Long.valueOf(req.getParameter("flightId"));
         try (PrintWriter printWriter = resp.getWriter()) {
-                printWriter.write("<h1>Купленные билеты</h1>");
-                printWriter.write("<ul>");
+            printWriter.write("<h1>Купленные билеты</h1>");
+            printWriter.write("<ul>");
             List<TicketDTO> allByFlightId = ticketService.findAllByFlightId(flightId);
             allByFlightId.forEach(ticketDTO -> printWriter.write("""
                     <li>
